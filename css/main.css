@@ -9,10 +9,11 @@ body {
     height: 100vh;
     background-color: cadetblue;
     position: relative;
+    overflow: hidden;
 }
 
 #player {
-    background-color: greenyellow;
+    background-color: navy;
     position: absolute;
 
 }

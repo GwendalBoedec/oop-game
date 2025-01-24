@@ -2,10 +2,11 @@
 
 class Player {
     constructor () {
-        this.positionX = 10;
+        this.positionX = 50
         this.positionY = 0;
         this.width = 20;
         this.height = 10;
+        // les valeurs sont relatives pour s'adapter aux écrans. 
 
         this.playerElm = document.getElementById("player");
         this.updateUi();
@@ -20,13 +21,17 @@ class Player {
     }
 
     moveLeft() {
+        if (this.positionX > 0) {
         this.positionX--;
         this.updateUi();   
     };
+}
 
     moveRight() {
-        this.positionX++;
+        if (this.positionX < 100-this.width)
+        {this.positionX++;
         this.updateUi();
+        }
     }
 }
 
@@ -84,7 +89,22 @@ setInterval(() => {
 //move obstacle
 setInterval(() => {
     obstaclesArr.forEach(function(obstacleInstance) {
+       //move
         obstacleInstance.moveDown();
+
+        if (
+            player.positionX < obstacleInstance.positionX + obstacleInstance.width &&
+            player.positionX + player.width > obstacleInstance.positionX &&
+            player.positionY < obstacleInstance.positionY + obstacleInstance.height &&
+            player.positionY + player.height > obstacleInstance.positionY
+          )
+          {
+            console.log("GAME OVER")
+            //il faut ajouter une nouvelle page HTML GAME OVER pour renvoyer vers celle ci
+          }
+
+        //detect collision
+
     });
 }, 60
 )
